@@ -12,13 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.beust.jcommander.JCommander;
-import com.cloud.dinein.DineInResourceInterface;
 import com.cloud.dinein.resources.YelpAPI.YelpAPICLI;
 
 @Path("/dinein")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class DineInResource implements DineInResourceInterface{
+public class DineInResource{
 
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(DineInResource.class);

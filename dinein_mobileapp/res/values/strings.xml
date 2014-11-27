@@ -2,7 +2,11 @@
 <resources>
 
     <string name="app_name">DineIn</string>
+    <string name="search_activity">SearchActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+	<string name="search">Search</string>
+	<string name="dish">Dish</string>
+	<string name="location">Location</string>    
 
 </resources>
