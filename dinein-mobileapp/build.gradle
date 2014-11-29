@@ -1,0 +1,72 @@
+buildscript {
+    repositories {
+        
+     mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.14+'
+    }
+}
+
+apply plugin: 'android'
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+
+
+
+android {
+    buildToolsVersion "21.0"
+    compileSdkVersion 21
+    defaultConfig {
+        targetSdkVersion 21
+        minSdkVersion 16
+        versionCode 10
+    }
+    
+     sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+
+        instrumentTest.setRoot('tests')
+    }
+} 
+group = 'com.cloud.dinein'
+version = '0.1.0'
+
+description = "Dinein mobile app"
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+repositories {
+        
+     maven { url "http://oss.sonatype.org/content/repositories/snapshots" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+     mavenCentral()
+}
+
+
+
+dependencies {
+
+    compile group: 'com.netflix.feign', name: 'feign-core', version:'6.1.3'
+    compile group: 'com.netflix.feign', name: 'feign-jackson', version:'6.1.3'
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version:'1.1'
+    compile(group: 'com.google.android', name: 'android', version:'4.1.1.4') {
+       /* This dependency was originally in the Maven provided scope, but the project was not of type war.
+       This behavior is not yet supported by Gradle, so this dependency has been converted to a compile dependency.
+       Please review and delete this closure when resolved. */
+    }
+}

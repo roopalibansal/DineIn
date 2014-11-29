@@ -1,0 +1,10 @@
+allprojects  {
+  apply plugin: 'maven'
+  apply plugin: 'eclipse'
+
+  group = 'com.dinein'
+version = '0.1'
+
+  
+  
+}
