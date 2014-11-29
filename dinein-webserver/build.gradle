@@ -1,10 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
-group = 'io.dropwizard'
-version = '0.8.0-rc2-SNAPSHOT'
+group = 'com.dinein.dinein-webserver'
+version = '0.1.0'
 
-description = """Dropwizard Example Application"""
+description = "Dinein Web server"
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
