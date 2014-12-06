@@ -1,7 +1,9 @@
 *.project
+.classpath
 .metadata
 .gradle
 bin/
+build/
 tmp/
 *.tmp
 *.bak
