@@ -12,6 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.cloud.dinein.location.LocationActivity;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -67,6 +69,13 @@ public class HomeActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	
+	public void getCurrentLocation(View view) {
+		Intent intent = new Intent(this, LocationActivity.class);
+		startActivity(intent);
+	}
+
 
 	public void sendSearchRequest(View view) {
 

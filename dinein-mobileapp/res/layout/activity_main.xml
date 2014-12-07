@@ -24,6 +24,14 @@
         android:layout_height="wrap_content"
         android:text="@string/search" 
         android:onClick="sendSearchRequest" />
+    
+    
+        <Button
+        android:id="@+id/GETCURRENTLOCATION"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/getCurrentLocation" 
+        android:onClick="getCurrentLocation" />
         
 
 </LinearLayout>
