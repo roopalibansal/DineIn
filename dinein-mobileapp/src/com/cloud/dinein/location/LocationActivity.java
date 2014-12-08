@@ -93,6 +93,37 @@ public class LocationActivity extends FragmentActivity implements
      *
      */
     boolean mUpdatesRequested = false;
+    
+    public LocationActivity() {
+        mLocationRequest = LocationRequest.create();
+
+        /*
+         * Set the update interval
+         */
+        mLocationRequest.setInterval(LocationUtils.UPDATE_INTERVAL_IN_MILLISECONDS);
+
+        // Use high accuracy
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        // Set the interval ceiling to one minute
+        mLocationRequest.setFastestInterval(LocationUtils.FAST_INTERVAL_CEILING_IN_MILLISECONDS);
+
+        // Note that location updates are off until the user turns them on
+        mUpdatesRequested = false;
+
+        // Open Shared Preferences
+        mPrefs = getSharedPreferences(LocationUtils.SHARED_PREFERENCES, Context.MODE_PRIVATE);
+
+        // Get an editor
+        mEditor = mPrefs.edit();
+
+        /*
+         * Create a new location client, using the enclosing class to
+         * handle callbacks.
+         */
+        mLocationClient = new LocationClient(this, this, this);
+	
+	}
 
     /*
      * Initialize the Activity
@@ -294,18 +325,18 @@ public class LocationActivity extends FragmentActivity implements
      *
      * @param v The view object associated with this method, in this case a Button.
      */
-    public void getLocation(View v) {
-
-        // If Google Play Services is available
-        if (servicesConnected()) {
-
-            // Get the current location
-            Location currentLocation = mLocationClient.getLastLocation();
-
-            // Display the current location in the UI
-            mLatLng.setText(LocationUtils.getLatLng(this, currentLocation));
-        }
-    }
+//    public void getLocation(View v) {
+//
+//        // If Google Play Services is available
+//        if (servicesConnected()) {
+//
+//            // Get the current location
+//            Location currentLocation = mLocationClient.getLastLocation();
+//
+//            // Display the current location in the UI
+//            mLatLng.setText(LocationUtils.getLatLng(this, currentLocation));
+//        }
+//    }
 
     /**
      * Invoked by the "Get Address" button.
@@ -322,7 +353,7 @@ public class LocationActivity extends FragmentActivity implements
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD && !Geocoder.isPresent()) {
             // No geocoder is present. Issue an error message
             Toast.makeText(this, R.string.no_geocoder_available, Toast.LENGTH_LONG).show();
-            return;
+            ;
         }
 
         if (servicesConnected()) {
@@ -336,6 +367,7 @@ public class LocationActivity extends FragmentActivity implements
             // Start the background task
             (new LocationActivity.GetAddressTask(this)).execute(currentLocation);
         }
+       
     }
 
     /**
@@ -344,13 +376,13 @@ public class LocationActivity extends FragmentActivity implements
      *
      * @param v The view object associated with this method, in this case a Button.
      */
-    public void startUpdates(View v) {
-        mUpdatesRequested = true;
-
-        if (servicesConnected()) {
-            startPeriodicUpdates();
-        }
-    }
+//    public void startUpdates(View v) {
+//        mUpdatesRequested = true;
+//
+//        if (servicesConnected()) {
+//            startPeriodicUpdates();
+//        }
+//    }
 
     /**
      * Invoked by the "Stop Updates" button
@@ -359,13 +391,13 @@ public class LocationActivity extends FragmentActivity implements
      *
      * @param v The view object associated with this method, in this case a Button.
      */
-    public void stopUpdates(View v) {
-        mUpdatesRequested = false;
-
-        if (servicesConnected()) {
-            stopPeriodicUpdates();
-        }
-    }
+//    public void stopUpdates(View v) {
+//        mUpdatesRequested = false;
+//
+//        if (servicesConnected()) {
+//            stopPeriodicUpdates();
+//        }
+//    }
 
     /*
      * Called by Location Services when the request to connect the
@@ -471,8 +503,10 @@ public class LocationActivity extends FragmentActivity implements
      * String   - An address passed to onPostExecute()
      */
     protected class GetAddressTask extends AsyncTask<Location, Void, String> {
+    	public AsyncResponse delegate=null;
 
-        // Store the context passed to the AsyncTask when the system instantiates it.
+
+        // Store the context passed to the AsyncTask when the sfystem instantiates it.
         Context localContext;
 
         // Constructor called by the system to instantiate the task
@@ -581,9 +615,10 @@ public class LocationActivity extends FragmentActivity implements
 
             // Turn off the progress bar
             mActivityIndicator.setVisibility(View.GONE);
-
+            TextView Location = (TextView) findViewById(R.id.LOCATION);
             // Set the address in the UI
-            mAddress.setText(address);
+            Location.setText(address);
+            delegate.processFinish(address);
         }
     }
 
@@ -648,5 +683,9 @@ public class LocationActivity extends FragmentActivity implements
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             return mDialog;
         }
+    }
+    
+    public interface AsyncResponse {
+        void processFinish(String output);
     }
 }

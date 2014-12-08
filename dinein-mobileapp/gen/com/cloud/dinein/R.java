@@ -1465,7 +1465,6 @@ containing a value of this type.
     }
     public static final class id {
         public static final int DISH=0x7f0b004e;
-        public static final int GETCURRENTLOCATION=0x7f0b0051;
         public static final int LOCATION=0x7f0b004f;
         public static final int SEARCH=0x7f0b0050;
         public static final int action_bar=0x7f0b002e;
@@ -1479,16 +1478,16 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f0b0002;
         public static final int action_menu_presenter=0x7f0b0003;
         public static final int action_mode_close_button=0x7f0b0036;
-        public static final int action_settings=0x7f0b0066;
+        public static final int action_settings=0x7f0b0064;
         public static final int activity_chooser_view_content=0x7f0b0037;
         public static final int address=0x7f0b0057;
         public static final int address_progress=0x7f0b0056;
         public static final int always=0x7f0b0022;
         public static final int beginning=0x7f0b0029;
         public static final int book_now=0x7f0b0014;
-        public static final int button1=0x7f0b0061;
-        public static final int button2=0x7f0b0062;
-        public static final int button3=0x7f0b0065;
+        public static final int button1=0x7f0b005f;
+        public static final int button2=0x7f0b0060;
+        public static final int button3=0x7f0b0063;
         public static final int buyButton=0x7f0b0010;
         public static final int buy_now=0x7f0b0015;
         public static final int buy_with_google=0x7f0b0016;
@@ -1499,16 +1498,17 @@ containing a value of this type.
         public static final int dialog=0x7f0b0027;
         public static final int disableHome=0x7f0b001c;
         public static final int dropdown=0x7f0b0028;
-        public static final int editText1=0x7f0b005f;
-        public static final int editText2=0x7f0b0060;
-        public static final int editText3=0x7f0b0063;
-        public static final int editText4=0x7f0b0064;
+        public static final int editText1=0x7f0b005d;
+        public static final int editText2=0x7f0b005e;
+        public static final int editText3=0x7f0b0061;
+        public static final int editText4=0x7f0b0062;
         public static final int edit_query=0x7f0b0042;
         public static final int end=0x7f0b002a;
         public static final int expand_activities_button=0x7f0b0038;
         public static final int expanded_menu=0x7f0b003e;
-        public static final int get_address_button=0x7f0b005c;
-        public static final int get_location_button=0x7f0b005a;
+        public static final int get_address_button1=0x7f0b005a;
+        public static final int get_address_text=0x7f0b0051;
+        public static final int get_location_button=0x7f0b005b;
         public static final int grayscale=0x7f0b0018;
         public static final int holo_dark=0x7f0b000b;
         public static final int holo_light=0x7f0b000c;
@@ -1534,7 +1534,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f0b0004;
         public static final int progress_horizontal=0x7f0b0005;
         public static final int radio=0x7f0b0041;
-        public static final int restaurant_list=0x7f0b005e;
+        public static final int restaurant_list=0x7f0b005c;
         public static final int sandbox=0x7f0b000e;
         public static final int satellite=0x7f0b0009;
         public static final int search_badge=0x7f0b0044;
@@ -1553,8 +1553,6 @@ containing a value of this type.
         public static final int showHome=0x7f0b001f;
         public static final int showTitle=0x7f0b0020;
         public static final int split_action_bar=0x7f0b0030;
-        public static final int start_updates=0x7f0b005b;
-        public static final int stop_updates=0x7f0b005d;
         public static final int strict_sandbox=0x7f0b000f;
         public static final int submit_area=0x7f0b004b;
         public static final int tabMode=0x7f0b001b;
