@@ -5,4 +5,5 @@ include "appcompat_v7"
 include "dinein-commons"
 include "dinein-webserver"
 include "dinein-mobileapp"
+include "snsmobilepush"
 

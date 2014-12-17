@@ -2,6 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="30dp"
+    android:paddingLeft="20dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:paddingRight="10dp"
+    android:paddingTop="50dp" >
 
+    <EditText
+        android:id="@+id/push_deals_restaurant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Restaurant" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/push_deals_deal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Deal" />
+
+    <Button
+        android:id="@+id/push_deals_add_deal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="20dp"
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:text="Push"
+        android:onClick="addDealActivity" />
+    
+    <EditText
+        android:id="@+id/push_deals_show_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:visibility="invisible"
+        android:editable="false"    />
 </LinearLayout>

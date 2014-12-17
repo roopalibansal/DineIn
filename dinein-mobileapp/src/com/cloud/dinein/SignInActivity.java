@@ -25,4 +25,11 @@ public class SignInActivity extends Activity {
 		Intent intent = new Intent(this, SignUpActivity.class);
 	    startActivity(intent);
 	}
+	
+
+	public void ownerActivity(View view)
+	{
+		Intent intent = new Intent(this, PushDealsActivity.class);
+	    startActivity(intent);
+	}
 }

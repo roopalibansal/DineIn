@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin:'application'
+
+
+group = 'com.dinein.snsmobilepush'
+version = '0.1.0'
+
+description = "SNS Mobile push"
+mainClassName = "src.com.amazonaws.sns.samples.mobilepush.SNSMobilePush"
+
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+configurations.all {
+}
+
+repositories {
+        
+     maven { url "http://oss.sonatype.org/content/repositories/snapshots" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile 'com.amazonaws:aws-java-sdk:1.9.10'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.3.3'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.3.3'
+    compile 'net.sf.opencsv:opencsv:2.3'
+
+}
+

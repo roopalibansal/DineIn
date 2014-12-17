@@ -6,16 +6,44 @@ defaultName: Stranger
 database:
 
   # the name of your JDBC driver
-  driverClass: org.h2.Driver
+  driverClass: org.postgresql.Driver
 
   # the username
-  user: sa
+  user: stm335	
 
   # the password
-  password: sa
+  password: dineindb_pw
 
   # the JDBC URL
-  url: jdbc:h2:./target/example
+  
+  url: jdbc:postgresql://dinein2.ceev2idkwacc.us-east-1.rds.amazonaws.com:5432/dinein
+  
+  
+   # any properties specific to your JDBC driver:
+  properties:
+    charSet: UTF-8
+
+  # the maximum amount of time to wait on an empty pool before throwing an exception
+  maxWaitForConnection: 1s
+
+  # the SQL query to run when validating a connection's liveness
+  validationQuery: "/* MyService Health Check */ SELECT 1"
+
+  # the minimum number of connections to keep open
+  minSize: 8
+
+  # the maximum number of connections to keep open
+  maxSize: 32
+
+  # whether or not idle connections should be validated
+  checkConnectionWhileIdle: false
+
+  # the amount of time to sleep between runs of the idle connection validation, abandoned cleaner and idle pool resizing
+  evictionInterval: 10s
+
+  # the minimum amount of time an connection must sit idle in the pool before it is eligible for eviction
+  minIdleTime: 1 minute
+     
 
 # use the simple server factory if you only want to run on a single port
 #server:

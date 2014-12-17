@@ -3,16 +3,12 @@ package com.cloud.dinein;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.json.simple.JSONObject;
 
-import com.cloud.dinein.DineInResourceInterface;
-import com.cloud.dinein.client.DineInResourceClient;
 import com.cloud.dinein.R;
-
-import feign.Feign;
-import feign.jackson.JacksonDecoder;
-import feign.jackson.JacksonEncoder;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -26,26 +22,18 @@ import android.widget.ListView;
 
 public class SearchActivity extends Activity {
 
-	private static final String EC2_HOST = "http://ec2-54-173-191-212.compute-1.amazonaws.com:8080";
-
-	private final DineInResourceInterface client = Feign.builder()
-			.encoder(new JacksonEncoder()).decoder(new JacksonDecoder())
-			.target(DineInResourceClient.class, EC2_HOST);
-
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-
 
 		System.out.println("Reached oncreate");
 		Intent intent = getIntent();
-	    String dish = intent.getStringExtra(HomeActivity.DISH_MESSAGE);
-	    String location = intent.getStringExtra(HomeActivity.LOCATION_MESSAGE);
-	    System.out.println("Dish : " + dish);
-	    System.out.println("Location : " + location);
-	    
+		String dish = intent.getStringExtra(HomeActivity.DISH_MESSAGE);
+		String location = intent.getStringExtra(HomeActivity.LOCATION_MESSAGE);
+		System.out.println("Dish : " + dish);
+		System.out.println("Location : " + location);
+
 		new RetrieveRestaurantsTask().execute(Pair.create(dish, location));
 
 	}
@@ -70,39 +58,42 @@ public class SearchActivity extends Activity {
 	}
 
 	private class RetrieveRestaurantsTask extends
-			AsyncTask<Pair<String, String>, Void, List<String>> {
+			AsyncTask<Pair<String, String>, Void, Map<String, String>> {
 
 		@Override
-		protected List<String> doInBackground(
+		protected Map<String, String> doInBackground(
 				Pair<String, String>... dishLocationPairs) {
-			JSONObject response = SearchActivity.this.client.getRestaurants(dishLocationPairs[0].first,
-					dishLocationPairs[0].second);
+			System.out.println("\n\n\nPair:  " +dishLocationPairs+ "\n\n");
+			
+			Map<String, String> response = DineinClientImpl.client
+					.getRestaurants(dishLocationPairs[0].first,
+							dishLocationPairs[0].second);
 
-			@SuppressWarnings("unchecked")
-			ArrayList<HashMap<String, String>> restaurantNames = (ArrayList<HashMap<String, String>>) response
-					.get("businesses");
-
-			List<String> restaurants = new ArrayList<String>();
-
-			for (HashMap<String, String> restaurantInfo : restaurantNames) {
-				restaurants.add(restaurantInfo.get("id"));
-			}
-
-			return restaurants;
+			return response;
 		}
 
+		
+		// TODO : we need listview of restaurant objects instead of strings. 
+		// Figure out how to do this!!!
 		@Override
-		protected void onPostExecute(List<String> restaurants) {
+		protected void onPostExecute(Map<String, String> restaurantDealMap) {
 			setContentView(R.layout.search_results);
+			List<String> restaurantDealList = new ArrayList<String>();
+			for (Entry<String, String> restaurantDealPair : restaurantDealMap
+					.entrySet()) {
+				restaurantDealList.add(restaurantDealPair.getKey() + "Deal :"
+						+ restaurantDealPair.getValue());
+			}
+
 			ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(
 					SearchActivity.this, android.R.layout.simple_list_item_1,
-					restaurants);
+					restaurantDealList);
 
 			ListView lv = (ListView) SearchActivity.this
-					.findViewById(R.id.restaurant_list);
+					.findViewById(R.id.search_results_restaurant_list);
 
 			lv.setAdapter(mAdapter);
-			
+
 		}
 	}
 }

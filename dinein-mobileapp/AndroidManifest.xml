@@ -72,6 +72,16 @@
         </activity>
         
         <activity
+            android:name="com.cloud.dinein.PushDealsActivity"
+            android:label="@string/push_deals_activity"
+            android:parentActivityName="com.cloud.dinein.SignInActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cloud.dinein.SignInActivity" />
+        </activity>
+        
+        
+        <activity
             android:name="com.cloud.dinein.location.LocationActivity"
             android:label="@string/location_activity"
             android:parentActivityName="com.cloud.dinein.HomeActivity" >

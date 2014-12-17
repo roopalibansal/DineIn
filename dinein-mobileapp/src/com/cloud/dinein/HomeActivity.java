@@ -75,7 +75,7 @@ public class HomeActivity extends Activity implements LocationListener,
 
 		setContentView(R.layout.activity_main);
 
-		AutoCompleteTextView autoCompView = (AutoCompleteTextView) findViewById(R.id.LOCATION);
+		AutoCompleteTextView autoCompView = (AutoCompleteTextView) findViewById(R.id.activity_main_location);
 		autoCompView.setAdapter(new PlacesAutoCompleteAdapter(this,
 				R.layout.locations));
 
@@ -101,15 +101,15 @@ public class HomeActivity extends Activity implements LocationListener,
 
 		Intent intent = new Intent(this, SearchActivity.class);
 		// Initialize member TextView so we can manipulate it later
-		EditText dishTextView = (EditText) findViewById(R.id.DISH);
-		EditText locationTextView = (EditText) findViewById(R.id.LOCATION);
+		EditText dishTextView = (EditText) findViewById(R.id.activity_main_dish);
+		EditText locationTextView = (EditText) findViewById(R.id.activity_main_location);
 		String dish = dishTextView.getText().toString();
 		String location = locationTextView.getText().toString();
 		intent.putExtra(DISH_MESSAGE, dish);
 
 		System.out.println("Location : " + location);
 		
-		if (true) {
+		if (false) {
 
 			locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 			locationManager.requestLocationUpdates(
@@ -245,7 +245,7 @@ public class HomeActivity extends Activity implements LocationListener,
 
 	@Override
 	public void onLocationChanged(Location location) {
-		txtLat = (TextView) findViewById(R.id.get_address_text);
+		txtLat = (TextView) findViewById(R.id.activity_main_get_address_text);
 		txtLat.setText("Latitude:" + location.getLatitude() + ", Longitude:"
 				+ location.getLongitude());
 
@@ -384,7 +384,7 @@ public class HomeActivity extends Activity implements LocationListener,
 		protected void onPostExecute(Pair<String,Intent> address) {
 
 			// Turn off the progress bar
-			TextView Location = (TextView) findViewById(R.id.get_address_text);
+			TextView Location = (TextView) findViewById(R.id.activity_main_get_address_text);
 			// Set the address in the UI
 			Location.setText(address.first);
 			delegate.processFinish(address);

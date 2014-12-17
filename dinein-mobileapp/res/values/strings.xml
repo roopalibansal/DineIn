@@ -4,6 +4,7 @@
     <string name="app_name">DineIn</string>
     <string name="search_activity">SearchActivity</string>
     <string name="location_activity">LocationActivity</string>
+    <string name="push_deals_activity">PushDealsActivity</string>
     
     <string name="sign_in">Signin</string>
     <string name="sign_up">Signup</string>
